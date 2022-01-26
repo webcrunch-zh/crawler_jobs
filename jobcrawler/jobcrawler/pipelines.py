@@ -254,3 +254,6 @@ class JobcrawlerPipeline (object):
                 self.logger.critical(e)
 
             self.conn.commit()
+
+    def close_spider(self, spider):
+        self.logger.critical("DDDDDHCGGHGHFGFGHF")
