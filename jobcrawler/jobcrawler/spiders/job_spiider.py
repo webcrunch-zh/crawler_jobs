@@ -10,7 +10,10 @@ import scrapy
 from scrapy import Spider
 import re
 import logging
-#from scrapy.crawler import CrawlerProcess
+from scrapy.crawler import CrawlerProcess
+
+from scrapy.settings import Settings
+from scrapy.utils.project import get_project_settings
 
 
 class Jobcrawler(scrapy.Spider):
@@ -420,5 +423,10 @@ class Jobcrawler(scrapy.Spider):
 #     }
 # )
 
-# process.crawl(Jobcrawler)
-# process.start()
+
+crawler_settings = Settings()
+
+
+process = CrawlerProcess(get_project_settings())
+process.crawl(Jobcrawler)
+process.start()  # the script will block here until the crawling is fiprocess.crawl('followall', domain='scrapinghub.com')
