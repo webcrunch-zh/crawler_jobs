@@ -427,5 +427,5 @@ crawler_settings = Settings()
 
 
 process = CrawlerProcess(get_project_settings())
-process.crawl(Jobcrawler)
+process.crawl(Jobcrawler, output=' -o test.json')
 process.start()  # the script will block here until the crawling is fiprocess.crawl('followall', domain='scrapinghub.com')
