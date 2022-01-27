@@ -4,7 +4,6 @@
 # your spiders.
 
 import json
-# from tkinter import EXCEPTION
 from unittest import signals
 import scrapy
 from scrapy import Spider

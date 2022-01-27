@@ -17,7 +17,6 @@
 from asyncio.log import logger
 from operator import getitem
 from sqlite3 import connect
-from tkinter import EXCEPTION
 from itemadapter import ItemAdapter
 import mysql.connector
 import mysql
