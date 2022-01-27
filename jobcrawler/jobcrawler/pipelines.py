@@ -44,9 +44,6 @@ class JobcrawlerPipeline (object):
     db_table_jobs = os.environ.get('TABLE_JOBS')
     db_table_companys = os.environ.get('TABLE_COMPANYS')
 
-    itemArray = []
-    itemJson = {}
-
     def __init__(self):
         self.create_connection()
         self.create_table_jobs()
@@ -144,32 +141,10 @@ class JobcrawlerPipeline (object):
 
     def process_item(self, item, spider):
         self.logger.debug(" --------- PROCESS DATA --------- ")
-        for i, val in enumerate(item):
-            try:
-                self.itemArray.append(item)
-            except TypeError:
-                logger.warning(" --------- ITEM IS NONE --------- ")
-
-        self.store_db(item, self.itemArray)
+        self.store_db(item)
         return item
 
-    # def store_db(self, item, itemArray):
-    #     self.logger.info(" --------- STORE DATA TO DB --------- ")
-    #     self.logger.warning("!!!!!!!! DONE !!!!!!!!" + item["job_id"] + " => ")
-    #     self.logger.warning(type(item["job_id"]))
-
-    #     job_id = tuple(item["job_id"])
-
-    #     add_user = ("INSERT INTO jobs_ch"
-    #                 "(id, job_id) "
-    #                 "VALUES (%s,%s)")
-
-    #     data_user = (0, job_id[0])
-
-    #     self.curr.execute(add_user, data_user)
-    #     self.conn.commit()
-
-    def store_db(self, item, itemArray):
+    def store_db(self, item):
 
         try:
             src_hostname = item["source_hostname"]
@@ -232,7 +207,7 @@ class JobcrawlerPipeline (object):
 
         if row_count_cursor.rowcount > 0:
             self.logger.warning(
-                "  --------- JOB (" + item["job_id"] + ") IS DUPLIICATE IN " + self.db_table_companys + " --------- ")
+                "  --------- JOB (" + item["job_id"] + ") IS DUPLIICATE IN " + self.db_table_jobs + " --------- ")
 
         else:
             try:
@@ -253,7 +228,4 @@ class JobcrawlerPipeline (object):
                     " --------- ERROR STORING ITEM IN DB COMPANY --------- ")
                 self.logger.critical(e)
 
-            self.conn.commit()
-
-    def close_spider(self, spider):
-        self.logger.critical("DDDDDHCGGHGHFGFGHF")
+        self.conn.commit()

@@ -10,7 +10,7 @@ import scrapy
 from scrapy import Spider
 import re
 import logging
-from scrapy.crawler import CrawlerProcess
+#from scrapy.crawler import CrawlerProcess
 
 
 class Jobcrawler(scrapy.Spider):
@@ -412,13 +412,13 @@ class Jobcrawler(scrapy.Spider):
         self.logger.debug("!!!!!!!! Request Fehler !!!!!!!!")
 
 
-process = CrawlerProcess(
+# process = CrawlerProcess(
 
-    settings={
-        'FEED_URI': 'autocrawl.json',
-        'FEED_FORMAT': 'json'
-    }
-)
+#     settings={
+#         'FEED_URI': 'autocrawl.json',
+#         'FEED_FORMAT': 'json'
+#     }
+# )
 
-process.crawl(Jobcrawler)
-process.start()
+# process.crawl(Jobcrawler)
+# process.start()
