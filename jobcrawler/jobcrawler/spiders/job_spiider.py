@@ -425,7 +425,7 @@ class Jobcrawler(scrapy.Spider):
 
 crawler_settings = Settings()
 
-
+process = CrawlerProcess({'LOG_ENABLED': True })
 process = CrawlerProcess(get_project_settings())
-process.crawl(Jobcrawler, output=' -o test.json')
+process.crawl(Jobcrawler)
 process.start()  # the script will block here until the crawling is fiprocess.crawl('followall', domain='scrapinghub.com')
